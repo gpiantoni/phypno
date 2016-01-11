@@ -275,29 +275,6 @@ class Data:
 
             return output
 
-    def __getattr__(self, possible_axis):
-        """Return the axis with a shorter syntax.
-
-        Parameters
-        ----------
-        possible_axis : str
-            one of the axes
-
-        Returns
-        -------
-        value of the axis of interest
-
-        Raises
-        ------
-        AttributeError
-            it has to. see https://docs.python.org/3/reference/datamodel.html#object.__getattr__
-            and also because otherwise pickle does not work
-        """
-        if possible_axis in self.axis:
-            return self.axis[possible_axis]
-        else:
-            raise AttributeError
-
     def __iter__(self):
         """Implement generator for each trial.
 

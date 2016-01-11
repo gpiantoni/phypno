@@ -294,6 +294,9 @@ class Data:
         """
         return self.axis[possible_axis]
 
+    def __getstate__(self):
+        return self
+
     def __iter__(self):
         """Implement generator for each trial.
 

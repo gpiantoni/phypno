@@ -289,13 +289,14 @@ class Data:
 
         Raises
         ------
-        KeyError
-            instead of AttributeError.
+        AttributeError
+            it has to. see https://docs.python.org/3/reference/datamodel.html#object.__getattr__
+            and also because otherwise pickle does not work
         """
-        return self.axis[possible_axis]
-
-    def __getstate__(self):
-        return self
+        if possible_axis in self.axis:
+            return self.axis[possible_axis]
+        else:
+            raise AttributeError
 
     def __iter__(self):
         """Implement generator for each trial.
